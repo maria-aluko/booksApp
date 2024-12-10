@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import axios from 'axios';
+import useAxios from '../services/useAxios';
 import {
   Box,
   Card,
@@ -16,25 +16,31 @@ import {
 function Books() {
   const [books, setBooks] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-// if there are books in the array, get the books and display them
+  const { data, get } = useAxios('http://localhost:3000');
+
+// fetch books if books array is empty
   useEffect(() => {
     if (books.length === 0) {
       getBooks();
     }
   }, []);
 
-  // TODO: Replace axios with useAxios hook
   // get books from the server and set the data as 'books'
   async function getBooks() {
     try {
-      const response = await axios.get('http://localhost:3000/books');
-      setBooks(response.data);
-      setIsLoading(false);
+      await get('books');
     } catch (error) {
       console.error(error);
     }
   }
-
+//'sync' books with data, didn't work when inside the getBooks function
+  useEffect(() => {
+    if (data) {
+      setBooks(data);
+      setIsLoading(false);
+    }
+  }, [data]); //runs when data changes
+    
   // TODO: Implement search functionality
   // loading animation if still loading, otherwise map each book into a card
   return (
