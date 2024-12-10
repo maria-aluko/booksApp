@@ -16,7 +16,7 @@ import {
 function Books() {
   const [books, setBooks] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-
+// if there are books in the array, get the books and display them
   useEffect(() => {
     if (books.length === 0) {
       getBooks();
@@ -24,6 +24,7 @@ function Books() {
   }, []);
 
   // TODO: Replace axios with useAxios hook
+  // get books from the server and set the data as 'books'
   async function getBooks() {
     try {
       const response = await axios.get('http://localhost:3000/books');
@@ -35,6 +36,7 @@ function Books() {
   }
 
   // TODO: Implement search functionality
+  // loading animation if still loading, otherwise map each book into a card
   return (
     <Box sx={{ mx: 'auto', p: 2 }}>
       {isLoading && <CircularProgress />}

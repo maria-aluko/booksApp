@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Button, Box, AppBar, Toolbar, Typography } from '@mui/material';
-
+// simple header with a clickable home button and Add New button
 function Header() {
     return (
         <Box sx={{ flexGrow: 1 }}>
