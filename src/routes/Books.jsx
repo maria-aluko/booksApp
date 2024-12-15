@@ -11,12 +11,15 @@ import {
   Rating,
   Chip,
   Typography,
+  TextField,
 } from '@mui/material';
 
 function Books() {
   const [books, setBooks] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const { data, get } = useAxios('http://localhost:3000');
+  const [searchTerm, setSearchTerm] = useState('');
+  const [filteredBooks, setFilteredBooks] = useState([]);
 
 // fetch books if books array is empty
   useEffect(() => {
@@ -41,10 +44,30 @@ function Books() {
     }
   }, [data]); //runs when data changes
     
-  // TODO: Implement search functionality
+  // Filter books
+  useEffect(() => {
+    const searchTermLowerCase = searchTerm.toLowerCase();
+    const results = books.filter((book) =>
+      book.name.toLowerCase().includes(searchTermLowerCase) ||
+      book.author.toLowerCase().includes(searchTermLowerCase) ||
+      book.genres.some((genre) => genre.toLowerCase().includes(searchTermLowerCase))
+    );
+    setFilteredBooks(results);
+  }, [searchTerm, books]);
+
+
   // loading animation if still loading, otherwise map each book into a card
   return (
     <Box sx={{ mx: 'auto', p: 2 }}>
+      <TextField
+        label='Search by title, author or genre'
+        variant='outlined'
+        fullWidth
+        margin='normal'
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+      />
+
       {isLoading && <CircularProgress />}
       {!isLoading && (
         <div>
@@ -55,7 +78,7 @@ function Books() {
             useFlexGap
             flexWrap="wrap"
           >
-            {books.map((book) => (
+            {filteredBooks.map((book) => (
               <Card
                 sx={{
                   display: 'flex',
