@@ -35,12 +35,17 @@ function AddBook() {
     });
   };
 
-  const rateChangeHandler = (event) => {
-    const { value } = event.target;
-    setBook({
-      ...book,
-      stars: value,
-    });
+  const rateChangeHandler = (event, newValue) => {
+    setRateValue(newValue);
+    setBook((prevBook) => ({
+      ...prevBook,
+      stars: newValue,
+    }));
+    // const { value } = event.target;
+    // setBook({
+    //  ...book,
+    //  stars: value,
+    // });
   };
 
   const addBookHandler = (e) => {
