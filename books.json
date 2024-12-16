@@ -54,7 +54,7 @@
       "start": "2023-06-15",
       "end": "2023-07-10",
       "stars": 5,
-      "img": "https://m.media-amazon.com/images/W/MEDIAX_792452-T2/images/I/61pX0NiXdvL._AC_.jpg"
+      "img": "https://m.media-amazon.com/images/I/81q77Q39nEL._SY522_.jpg"
     },
     {
       "author": "David JP Phillips",
@@ -65,9 +65,22 @@
       "completed": true,
       "start": null,
       "end": null,
-      "stars": "5",
+      "stars": 5,
       "id": 5,
       "img": "https://www.davidjpphillips.com/wp-content/uploads/2023/08/highonlife_copy-195x300.jpg"
+    },
+    {
+      "author": "Carl Sagan",
+      "name": "Cosmos",
+      "genres": [
+        "Non-Fiction"
+      ],
+      "completed": false,
+      "start": "11/11/4",
+      "end": null,
+      "stars": "4",
+      "img": "https://en.wikipedia.org/wiki/Cosmos_(Sagan_book)#/media/File:Cosmos_book.gif",
+      "id": 6
     }
   ]
 }

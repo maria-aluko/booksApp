@@ -14,8 +14,7 @@ import { bookGenres } from '../genres';
 import { Stack, Typography } from '@mui/material';
 
 function AddBook() {
-  // 
-  const { alert, post } = useAxios('http://localhost:3001');
+  const { alert, post } = useAxios('http://localhost:3000');
   const [rateValue, setRateValue] = useState(3); //default state of 3 for ratings
   const [book, setBook] = useState({
     author: '',
@@ -41,11 +40,6 @@ function AddBook() {
       ...prevBook,
       stars: newValue,
     }));
-    // const { value } = event.target;
-    // setBook({
-    //  ...book,
-    //  stars: value,
-    // });
   };
 
   const addBookHandler = (e) => {
@@ -57,9 +51,13 @@ function AddBook() {
     }
   };
 
-  function postHandler() {
-    post('books', book);
-  }
+  async function postHandler() {
+    try {
+      await post('books', book);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <form onChange={addBookHandler} onSubmit={postHandler}>

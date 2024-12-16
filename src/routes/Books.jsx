@@ -55,8 +55,7 @@ function Books() {
     setFilteredBooks(results);
   }, [searchTerm, books]);
 
-
-  // loading animation if still loading, otherwise map each book into a card
+  // loading animation if still fetching, otherwise map each book into a card
   return (
     <Box sx={{ mx: 'auto', p: 2 }}>
       <TextField
