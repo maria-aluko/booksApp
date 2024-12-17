@@ -14,9 +14,7 @@ import { bookGenres } from '../genres';
 import { Stack, Typography } from '@mui/material';
 
 function AddBook() {
-  // 
-  const { alert, post } = useAxios('http://localhost:3001');
-  const [rateValue, setRateValue] = useState(3); //default state of 3 for ratings
+  const { alert, post } = useAxios('http://localhost:3000');
   const [book, setBook] = useState({
     author: '',
     name: '',
@@ -35,17 +33,13 @@ function AddBook() {
     });
   };
 
-  const rateChangeHandler = (event, newValue) => {
-    setRateValue(newValue);
-    setBook((prevBook) => ({
-      ...prevBook,
-      stars: newValue,
-    }));
-    // const { value } = event.target;
-    // setBook({
-    //  ...book,
-    //  stars: value,
-    // });
+  const rateChangeHandler = (event) => {
+    const { value } = event.target;
+    setBook({
+      ...book,
+      stars: value
+    });
+    console.log(value);
   };
 
   const addBookHandler = (e) => {
@@ -57,9 +51,23 @@ function AddBook() {
     }
   };
 
-  function postHandler() {
-    post('books', book);
-  }
+  async function postHandler(e) {
+    e.preventDefault();
+    try {
+      await post('books', book);
+    } catch (error) {
+      console.error(error);
+    }
+    setBook({
+      author: '',
+      name: '',
+      genres: [],
+      completed: false,
+      start: null,
+      end: null,
+      stars: null,
+    });
+  };
 
   return (
     <form onChange={addBookHandler} onSubmit={postHandler}>
@@ -77,18 +85,21 @@ function AddBook() {
           id="outlined-basic"
           label="Title"
           variant="outlined"
+          value={book.name}
         />
         <TextField
           name="author"
           id="outlined-basic"
           label="Author"
           variant="outlined"
+          value={book.author}
         />
         <TextField
           name="img"
           id="outlined-basic"
           label="Image (url)"
           variant="outlined"
+          value={book.img  || ''}
         />
         <Select
           labelId="demo-multiple-name-label"
@@ -114,15 +125,12 @@ function AddBook() {
 
         <DateField name="start" label="Started" />
         <DateField name="end" label="Finished" disabled={!book.completed} />
-        <Stack spacing={1}>
+        <Stack alignItems='center'>
           <Rating
             name="stars"
-            value={rateValue}
-            onClick={rateChangeHandler}
+            value={+book.stars}
+            onChange={rateChangeHandler}
             size="large"
-            onChange={(event, newValue) => {
-              setRateValue(newValue);
-            }}
           />
         </Stack>
         <Button variant="contained" type="submit">
