@@ -14,9 +14,7 @@ import { bookGenres } from '../genres';
 import { Stack, Typography } from '@mui/material';
 
 function AddBook() {
-  // 
   const { alert, post } = useAxios('http://localhost:3001');
-  const [rateValue, setRateValue] = useState(3); //default state of 3 for ratings
   const [book, setBook] = useState({
     author: '',
     name: '',
@@ -35,17 +33,13 @@ function AddBook() {
     });
   };
 
-  const rateChangeHandler = (event, newValue) => {
-    setRateValue(newValue);
-    setBook((prevBook) => ({
-      ...prevBook,
-      stars: newValue,
-    }));
-    // const { value } = event.target;
-    // setBook({
-    //  ...book,
-    //  stars: value,
-    // });
+  const rateChangeHandler = (event) => {
+    const { value } = event.target;
+    setBook({
+      ...book,
+      stars: value
+    });
+    console.log(value);
   };
 
   const addBookHandler = (e) => {
@@ -117,12 +111,10 @@ function AddBook() {
         <Stack spacing={1}>
           <Rating
             name="stars"
-            value={rateValue}
-            onClick={rateChangeHandler}
+            value={+book.stars}
+            onChange={rateChangeHandler}
             size="large"
-            onChange={(event, newValue) => {
-              setRateValue(newValue);
-            }}
+            precision={1}
           />
         </Stack>
         <Button variant="contained" type="submit">
