@@ -23,7 +23,9 @@ function AddBook() {
     start: null,
     end: null,
     stars: null,
+    img: ''
   }); // default state as empty
+  const defaultImage = 'https://img.freepik.com/free-vector/book-sketch_23-2147500567.jpg?semt=ais_hybrid';
 
   const genreChangeHandler = (event) => {
     const { value } = event.target;
@@ -53,8 +55,14 @@ function AddBook() {
 
   async function postHandler(e) {
     e.preventDefault();
+
+    const bookData = {
+      ...book,
+      img: book.img || defaultImage
+    };
+
     try {
-      await post('books', book);
+      await post('books', bookData);
     } catch (error) {
       console.error(error);
     }
@@ -66,6 +74,7 @@ function AddBook() {
       start: null,
       end: null,
       stars: null,
+      img: ''
     });
   };
 
@@ -99,7 +108,7 @@ function AddBook() {
           id="outlined-basic"
           label="Image (url)"
           variant="outlined"
-          value={book.img  || ''}
+          value={book.img}
         />
         <Select
           labelId="demo-multiple-name-label"
@@ -123,7 +132,7 @@ function AddBook() {
           label="Completed"
         />
 
-        <DateField name="start" label="Started" />
+        <DateField name="start" label="Started"/>
         <DateField name="end" label="Finished" disabled={!book.completed} />
         <Stack alignItems='center'>
           <Rating
