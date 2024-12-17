@@ -117,7 +117,7 @@ function Books() {
                 >
                   <Rating
                     name="read-only"
-                    value={book.stars}
+                    value={+book.stars}
                     readOnly
                     size="small"
                   />

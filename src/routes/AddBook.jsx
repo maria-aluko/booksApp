@@ -15,7 +15,6 @@ import { Stack, Typography } from '@mui/material';
 
 function AddBook() {
   const { alert, post } = useAxios('http://localhost:3000');
-  const [rateValue, setRateValue] = useState(3); //default state of 3 for ratings
   const [book, setBook] = useState({
     author: '',
     name: '',
@@ -34,12 +33,13 @@ function AddBook() {
     });
   };
 
-  const rateChangeHandler = (event, newValue) => {
-    setRateValue(newValue);
-    setBook((prevBook) => ({
-      ...prevBook,
-      stars: newValue,
-    }));
+  const rateChangeHandler = (event) => {
+    const { value } = event.target;
+    setBook({
+      ...book,
+      stars: value
+    });
+    console.log(value);
   };
 
   const addBookHandler = (e) => {
@@ -64,7 +64,7 @@ function AddBook() {
       <Stack
         spacing={1}
         alignItems="stretch"
-        sx={{ my: 2, mx: 'auto', width: '25%' }}
+        sx={{ my: 2, mx: 'auto', width: '25%'}}
       >
         {alert.show && <Alert severity={alert.type}>{alert.message}</Alert>}
         <Typography variant="h4" component="h2" sx={{ my: 10 }}>
@@ -112,15 +112,13 @@ function AddBook() {
 
         <DateField name="start" label="Started" />
         <DateField name="end" label="Finished" disabled={!book.completed} />
-        <Stack spacing={1}>
+        <Stack alignItems='center'> 
           <Rating
             name="stars"
-            value={rateValue}
-            onClick={rateChangeHandler}
-            size="large"
-            onChange={(event, newValue) => {
-              setRateValue(newValue);
-            }}
+            value={+book.stars}
+            onChange={rateChangeHandler}
+            size='large'
+            precision={1}
           />
         </Stack>
         <Button variant="contained" type="submit">

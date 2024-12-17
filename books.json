@@ -79,8 +79,22 @@
       "start": "11/11/4",
       "end": null,
       "stars": "4",
-      "img": "https://en.wikipedia.org/wiki/Cosmos_(Sagan_book)#/media/File:Cosmos_book.gif",
+      "img": "https://s1.adlibris.com/images/2955742/cosmos.jpg",
       "id": 6
+    },
+    {
+      "author": "Thomas Sowell",
+      "name": "Basic Economics",
+      "genres": [
+        "Business",
+        "Non-Fiction"
+      ],
+      "completed": true,
+      "start": "10/10/0",
+      "end": "10/10/1",
+      "stars": "4",
+      "img": "https://m.media-amazon.com/images/I/61eKb6xPlEL._AC_UF1000,1000_QL80_.jpg",
+      "id": 7
     }
   ]
 }
