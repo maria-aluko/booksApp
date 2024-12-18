@@ -13,6 +13,7 @@ import {
   Typography,
   TextField,
 } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
 function Books() {
   const [books, setBooks] = useState([]);
@@ -20,6 +21,7 @@ function Books() {
   const { data, get } = useAxios('http://localhost:3000');
   const [searchTerm, setSearchTerm] = useState('');
   const [filteredBooks, setFilteredBooks] = useState([]);
+  const navigate = useNavigate();
 
 // fetch books if books array is empty
   useEffect(() => {
@@ -55,6 +57,9 @@ function Books() {
     setFilteredBooks(results);
   }, [searchTerm, books]);
 
+  const handleLearnMore = (id) => {
+    navigate(`/${id}`);
+  };
 
   // loading animation if still loading, otherwise map each book into a card
   return (
@@ -122,7 +127,7 @@ function Books() {
                     readOnly
                     size="small"
                   />
-                  <Button size="small">Learn More</Button>
+                  <Button size="small" onClick={() => handleLearnMore(book.id)}>Learn More</Button>
                 </CardActions>
               </Card>
             ))}

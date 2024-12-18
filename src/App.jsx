@@ -6,6 +6,7 @@ import Root from './routes/Root';
 import Books from './routes/Books';
 import Book from './routes/Book';
 import AddBook from './routes/AddBook';
+import { router } from './routes/appRoutes.jsx';
 
 const theme = createTheme({
   palette: {
@@ -18,22 +19,7 @@ const theme = createTheme({
   },
 });
 
-// configure routing and URL changes through router constant
-// component Root is the root path '/' (that will render Books component within it)
-// children will be in the Outlet component inside Root
 function App() {
-  const router = createBrowserRouter([
-    {
-      path: '/',
-      element: <Root />,
-      children: [
-        { path: '/', element: <Books /> },
-        { path: '/book', element: <Book /> },
-        { path: '/addnew', element: <AddBook /> },
-      ],
-    },
-  ]);
-
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <ThemeProvider theme={theme}>
