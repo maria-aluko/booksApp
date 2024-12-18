@@ -68,6 +68,62 @@
       "stars": "5",
       "id": 5,
       "img": "https://www.davidjpphillips.com/wp-content/uploads/2023/08/highonlife_copy-195x300.jpg"
+    },
+    {
+      "author": "Carl Sagan",
+      "name": "Cosmos",
+      "genres": [
+        "Non-Fiction",
+        "Historical"
+      ],
+      "completed": true,
+      "start": "01/01/0",
+      "end": "01/30/0",
+      "stars": "5",
+      "img": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1388620656i/55030.jpg",
+      "id": 6
+    },
+    {
+      "author": "Thomas Sowell",
+      "name": "Basic Economics",
+      "genres": [
+        "Business",
+        "Non-Fiction"
+      ],
+      "completed": true,
+      "start": "12/12/3",
+      "end": "06/01/4",
+      "stars": "4",
+      "img": "https://www.suomalainen.com/cdn/shop/files/8b6c307387f144f98b10966a22a8ea0a9780465060733_1.jpg?v=1727755981",
+      "id": 7
+    },
+    {
+      "author": "Maria Aluko",
+      "name": "My Book",
+      "genres": [
+        "Historical",
+        "Mystery"
+      ],
+      "completed": false,
+      "start": "10/10/0",
+      "end": null,
+      "stars": "3",
+      "img": "https://img.freepik.com/free-vector/book-sketch_23-2147500567.jpg?semt=ais_hybrid",
+      "id": 8
+    },
+    {
+      "author": "Great Writer",
+      "name": "Second Test",
+      "genres": [
+        "Fantasy",
+        "Adventure"
+      ],
+      "completed": true,
+      "start": "05/05/0",
+      "end": "06/06/0",
+      "stars": "2",
+      "img": "https://img.freepik.com/free-vector/book-sketch_23-2147500567.jpg?semt=ais_hybrid",
+      "id": 9
     }
   ]
 }

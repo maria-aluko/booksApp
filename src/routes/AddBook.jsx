@@ -41,7 +41,6 @@ function AddBook() {
       ...book,
       stars: value
     });
-    console.log(value);
   };
 
   const addBookHandler = (e) => {
