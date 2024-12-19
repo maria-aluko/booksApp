@@ -12,6 +12,7 @@ import { DateField } from '@mui/x-date-pickers/DateField';
 import useAxios from '../services/useAxios';
 import { bookGenres } from '../genres';
 import { Stack, Typography } from '@mui/material';
+import FormControlContext from '@mui/material/FormControl/FormControlContext';
 
 function AddBook() {
   const { alert, post } = useAxios('http://localhost:3000');
@@ -94,6 +95,7 @@ function AddBook() {
           label="Title"
           variant="outlined"
           value={book.name}
+          required
         />
         <TextField
           name="author"
@@ -101,6 +103,7 @@ function AddBook() {
           label="Author"
           variant="outlined"
           value={book.author}
+          required
         />
         <TextField
           name="img"
@@ -117,6 +120,7 @@ function AddBook() {
           name="genres"
           onChange={genreChangeHandler}
           input={<OutlinedInput label="Genre" />}
+          required
         >
           {bookGenres.map((name) => (
             <MenuItem key={name} value={name}>
