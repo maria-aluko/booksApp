@@ -6,12 +6,10 @@ import {
   CardActions,
   CardMedia,
   Button,
-  CircularProgress,
   Stack,
   Rating,
   Chip,
   Typography,
-  TextField,
 } from '@mui/material';
 
 const SinglePage = () => {
@@ -26,11 +24,26 @@ const SinglePage = () => {
         const foundBook = data.books.find((e) => e.id === parseInt(id));
         setBook(foundBook);
       })
-      .catch((error) => console.error('Error loading JSON data:', error));
+      .catch((error) => {
+        console.error('Error loading JSON data:', error);
+      });
   }, [id]);
 
   if (!book) {
-    return <p>Loading book details...</p>;
+    return (
+      <Box sx={{ 
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        flexDirection: 'column',
+        mx: 'auto',
+        p: 2 }}>
+        <Typography variant="h5">
+          Something went wrong. Try again?
+        </Typography>
+        <Button onClick={() => navigate('/')}>Go back Home</Button>
+      </Box>
+    );
   }
 
   return (

@@ -30,7 +30,7 @@ function Books() {
     }
   }, []);
 
-  // get books from the server and set the data as 'books'
+  // get data from the server and set the data as 'books'
   async function getBooks() {
     try {
       await get('books');
@@ -38,7 +38,7 @@ function Books() {
       console.error(error);
     }
   }
-//'sync' books with data, didn't work when inside the getBooks function
+//'sync' books with data
   useEffect(() => {
     if (data) {
       setBooks(data);

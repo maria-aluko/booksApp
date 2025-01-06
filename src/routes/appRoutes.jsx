@@ -9,13 +9,13 @@ export const router = createBrowserRouter([
   { 
     path: '/', 
     element: <Root />, 
-    errorElement: <ErrorPage/>, 
+    errorElement: <ErrorPage />, 
     children: [
       { path: '/', element: <Books /> },
       { path: '/:id', element: <SinglePage />},
       { path: '/addnew', element: <AddBook /> },
-  ],
-},  
+    ],
+  }
 ],
   {
     future: {
