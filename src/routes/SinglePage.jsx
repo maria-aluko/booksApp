@@ -34,7 +34,11 @@ const SinglePage = () => {
   }
 
   return (
-    <Stack sx={{ mx: 'auto', my: '0', p: 2 }}>
+    <Stack 
+      sx={{ 
+        p: 2,
+        justifyContent: 'center',
+        alignItems: 'center' }}>
       <Card
         sx={{
           display: 'flex',
